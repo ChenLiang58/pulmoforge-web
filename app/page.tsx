@@ -1,28 +1,32 @@
-import SimulatorHUD from '../components/SimulatorHUD';
+import dynamic from 'next/dynamic';
+import Logo from '../components/Logo';
 import Architecture from '../components/Architecture';
 import Footer from '../components/Footer';
+
+// Dynamic import for client HUD simulator to optimize initial load speed
+const SimulatorHUD = dynamic(() => import('../components/SimulatorHUD'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[380px] w-full border border-neutral-900 rounded-xl bg-neutral-950/50 animate-pulse" />
+  ),
+});
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-neutral-300 font-sans antialiased selection:bg-white selection:text-black">
-      {/* Navigation */}
+      {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-neutral-900 bg-black/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-6 h-6 border border-white/20 rounded flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-white rounded-full" />
-            </div>
-            <span className="font-normal text-sm tracking-widest text-white uppercase">PulmoForge</span>
-          </div>
-          <button className="text-xs font-normal border border-white/20 text-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
+          <Logo />
+          <button className="text-xs font-mono border border-white/20 text-white px-4 py-2 rounded hover:bg-white hover:text-black transition-all">
             ACCESS PLATFORM
           </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-36 pb-16 max-w-4xl mx-auto px-6 text-center space-y-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 border border-neutral-800 rounded-full bg-neutral-950/50 text-[11px] tracking-widest uppercase text-neutral-400">
+      <section className="pt-36 pb-12 max-w-4xl mx-auto px-6 text-center space-y-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 border border-neutral-800 rounded-full bg-neutral-950/50 text-[11px] font-mono tracking-widest uppercase text-neutral-400">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           PulmoNet v1 Active Protection
         </div>
@@ -37,12 +41,12 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Interactive HUD Simulator Section */}
-      <section className="py-8 max-w-5xl mx-auto px-6 pb-24">
+      {/* Dynamic HUD Simulator Section */}
+      <section className="py-6 max-w-5xl mx-auto px-6 pb-24">
         <SimulatorHUD />
       </section>
 
-      {/* Pipeline Architecture Section */}
+      {/* Hardware-Accelerated Architecture Section */}
       <Architecture />
 
       {/* Footer */}
