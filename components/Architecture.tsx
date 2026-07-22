@@ -1,60 +1,76 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const steps = [
-  { step: '01', title: 'Audio Stream Capture', desc: 'Raw WebRTC audio buffer extraction with zero local disk persistence.' },
-  { step: '02', title: 'Feature Extraction', desc: 'Sub-frame analysis of phase discontinuities and synthetic vocoder signatures.' },
-  { step: '03', title: 'PulmoNet Inference', desc: 'Ultra-lightweight neural evaluation executing at sub-90ms latency locally.' },
-  { step: '04', title: 'Non-Intrusive HUD', desc: 'Instant real-time trust score rendered discreetly for meeting participants.' },
-];
-
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12 },
+    transition: {
+      staggerChildren: 0.15,
+    },
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
   },
 };
 
 export default function Architecture() {
-  return (
-    <section className="py-24 border-t border-neutral-900 bg-black">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center space-y-2 mb-16">
-          <span className="font-mono text-[10px] tracking-widest text-neutral-500 uppercase">Detection Pipeline</span>
-          <h2 className="text-2xl md:text-3xl font-extralight text-white tracking-tight">Sub-100ms Stream Processing</h2>
-        </div>
+  const steps = [
+    {
+      step: '01',
+      title: 'Real-time Audio Stream',
+      desc: 'Ingests sub-100ms PCM audio frames directly from system audio or browser RTC streams.',
+    },
+    {
+      step: '02',
+      title: 'PulmoNet Biometric Analysis',
+      desc: 'Extracts deep vocal tract resonances and physiological breathing patterns using lightweight neural models.',
+    },
+    {
+      step: '03',
+      title: 'Instant Trust Score',
+      desc: 'Flags synthetic clones, deepfakes, and automated injections instantly with zero data retention.',
+    },
+  ];
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-4 gap-6"
-        >
-          {steps.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="p-6 border border-neutral-800/80 rounded-lg bg-neutral-950/40 hover:border-neutral-700 transition-colors space-y-3"
-            >
-              <span className="font-mono text-xs text-neutral-500">{item.step} / PIPELINE</span>
-              <h3 className="text-base font-normal text-white">{item.title}</h3>
-              <p className="text-xs text-neutral-400 font-light leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+  return (
+    <section className="py-20 border-t border-neutral-900 max-w-5xl mx-auto px-6">
+      <div className="mb-12">
+        <h2 className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-2">
+          ARCHITECTURE // HYPER-SECURE
+        </h2>
+        <p className="text-2xl font-light text-white">How PulmoForge Works in Real-Time</p>
       </div>
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      >
+        {steps.map((item, index) => (
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="p-6 border border-neutral-800/80 rounded-xl bg-neutral-950/40 hover:border-sky-800/50 transition-colors shadow-lg space-y-3"
+          >
+            <span className="font-mono text-xs text-sky-400/70">{item.step} / PIPELINE</span>
+            <h3 className="text-lg font-medium text-white">{item.title}</h3>
+            <p className="text-xs text-neutral-400 font-light leading-relaxed">{item.desc}</p>
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   );
 }

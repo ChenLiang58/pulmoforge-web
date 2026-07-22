@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import Logo from '../components/Logo';
 import Architecture from '../components/Architecture';
@@ -26,7 +28,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section with Interactive 3D Mesh */}
+      {/* Hero Section */}
       <section className="pt-32 pb-8 max-w-5xl mx-auto px-6 text-center space-y-6">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 border border-sky-900/50 rounded-full bg-sky-950/30 text-[11px] font-mono tracking-widest uppercase text-sky-400">
           <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
@@ -44,13 +46,13 @@ export default function Home() {
           Continuous background biometric analysis for virtual meetings with instant synthetic voice detection operating at sub-100ms latency.
         </p>
 
-        {/* 3D WebGL Mesh Canvas */}
+        {/* 3D WebGL Canvas */}
         <div className="pt-2">
           <Interactive3DCore />
         </div>
       </section>
 
-      {/* Interactive 3D HUD Section */}
+      {/* Interactive HUD */}
       <section className="py-12 max-w-5xl mx-auto px-6 pb-24">
         <SimulatorHUD />
       </section>
