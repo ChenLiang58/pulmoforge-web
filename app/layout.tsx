@@ -1,24 +1,37 @@
-export const metadata = {
+import type { Metadata } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600'],
+});
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['300', '400', '500'],
+});
+
+export const metadata: Metadata = {
   title: 'PulmoForge — Real-Time Voice Trust Layer',
   description: 'Sub-100ms synthetic voice detection HUD for high-stakes virtual communications.',
   openGraph: {
-    title: 'PulmoForge',
-    description: 'Real-time voice trust layer',
-    url: 'https://pulmoforge.com',
-    siteName: 'PulmoForge',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: 'en_US',
+    title: 'PulmoForge — Real-Time Voice Trust Layer',
+    description: 'Continuous background biometric voice analysis and deepfake protection.',
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'PulmoForge',
-    description: 'Real-time voice trust layer',
-  },
 };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${inter.variable} ${mono.variable} dark scroll-smooth`}>
+      <body className="bg-black text-neutral-300 font-sans antialiased selection:bg-white selection:text-black">
+        {children}
+      </body>
+    </html>
+  );
+}

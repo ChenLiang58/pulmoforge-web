@@ -2,35 +2,37 @@
 
 export default function Logo({ className = '' }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-2.5 ${className}`}>
-      {/* Precision Vector Emblem */}
+    <div className={`flex items-center gap-3 ${className}`}>
       <svg
-        width="28"
-        height="28"
-        viewBox="0 0 32 32"
+        width="30"
+        height="30"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="text-white transition-transform hover:scale-105 duration-300"
+        className="transition-transform hover:scale-105 duration-300 drop-shadow-[0_0_12px_rgba(56,189,248,0.4)]"
       >
-        <rect x="1" y="1" width="30" height="30" rx="6" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.2" />
-        <circle cx="16" cy="16" r="9" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 2" opacity="0.6" />
-        <path
-          d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-        />
-        <path
-          d="M10 16C10 12.6863 12.6863 10 16 10C19.3137 10 22 12.6863 22 16"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeOpacity="0.5"
-          strokeLinecap="round"
-        />
-        <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+        <defs>
+          <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#38bdf8" />
+            <stop offset="50%" stopColor="#1d4ed8" />
+            <stop offset="100%" stopColor="#0f172a" />
+          </linearGradient>
+          <linearGradient id="arrowGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#1e40af" />
+            <stop offset="100%" stopColor="#38bdf8" />
+          </linearGradient>
+        </defs>
+        {/* Shield Contour */}
+        <path d="M50 8 L85 22 V50 C85 70 70 85 50 92 C30 85 15 70 15 50 V22 L50 8 Z" stroke="url(#shieldGrad)" strokeWidth="5" fill="#030712" fillOpacity="0.9" />
+        {/* Central Upward Arrow */}
+        <path d="M50 22 L64 42 H55 V68 H45 V42 H36 L50 22 Z" fill="url(#arrowGrad)" />
+        {/* Audio Wave Curves */}
+        <path d="M22 55 C30 40, 38 70, 44 55" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" fill="none" />
+        <path d="M78 55 C70 40, 62 70, 56 55" stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" fill="none" />
+        {/* Diamond Base */}
+        <polygon points="50,76 56,82 50,88 44,82" fill="#38bdf8" />
       </svg>
-      {/* Official Lowercase Wordmark */}
-      <span className="font-sans font-normal text-base tracking-tight text-white lowercase">
+      <span className="font-sans font-medium text-base tracking-tight text-white lowercase">
         pulmoforge
       </span>
     </div>
